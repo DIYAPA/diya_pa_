@@ -1,39 +1,78 @@
 ---
-title: Introduction to 5G Architecture
+
+title: High-Frequency Trading Explained
 date: 2026-05-02
+----------------
+
+In the time it took you to blink, an HFT algorithm just finished a marathon.
+While traditional investors talk about holding stocks for years, High-Frequency Trading (HFT) firms measure a ‘long-term’ investment in milliseconds.
+
 ---
 
-This is a brief exploration into the fundamentals of 5G networking concepts, particularly focusing on the core architecture.
+## How the Money is Made
 
-## The Core Concept
+The secret to HFT isn’t making big bets.
+It’s about making millions of tiny, microscopic bets with a high probability of success.
 
-Unlike 4G EPC (Evolved Packet Core), the 5G Core (5GC) is completely service-based. It breaks down the network functions into independent services that communicate over APIs, typically RESTful HTTP/2 interfaces.
+Imagine standing in a crowded market.
 
-```json
-{
-  "networkFunction": "AMF",
-  "status": "active",
-  "version": "1.2.0"
-}
-```
+You offer to buy apples for $1.00 and sell them for $1.01 at the same time.
 
-### Key Components
+You’re not betting on the price going up.
+You’re just collecting that 1-cent difference.
 
-- **AMF (Access and Mobility Management Function):** Handles connection and mobility management tasks.
-- **SMF (Session Management Function):** Manages user sessions, including IP address allocation and QoS.
-- **UPF (User Plane Function):** The actual router/gateway for the user's data traffic.
+**The Math:** Do this 10,000 times a second.
+**The Result:** You just made $100 in the time it took to sneeze.
 
-## Thoughts on Implementation
+---
 
-When building systems that interface with these components, having a solid grasp of distributed systems is critical. The move to a cloud-native architecture for the telecom core means treating network functions as stateless microservices.
+Now add speed to the equation.
 
-```javascript
-// Example of a minimal API client for a 5G network function
-async function queryAMF(subscriberId) {
-  const response = await fetch(`https://amf.internal.network/api/v1/subscribers/${subscriberId}`);
-  if (!response.ok) throw new Error('Failed to fetch subscriber data');
-  return response.json();
-}
-```
+When news breaks at 9:30:00.000,
+an HFT system reacts at 9:30:00.001.
 
-Next, I plan to dive into how these interact with the **RAN** (Radio Access Network).
+By the time a human trader even moves their mouse at 9:30:00.500,
+the HFT firm has already:
+
+* bought the stock
+* watched the price move
+* and sold it back
+
+All before you even clicked.
+
+---
+
+## The Taxman (And How They Try to Outrun Him)
+
+In the USA, HFT profits are usually treated as short-term capital gains, taxed up to 37%.
+In India, it’s treated as business income, taxed up to 30%, plus STT and other charges.
+
+Let’s do the math:
+
+* Daily Profit: $2,000,000
+* Tax (37%): $740,000
+* Take-home: $1,260,000 per day
+
+Even after the taxman takes a massive bite,
+they’re still doing very well.
+
+---
+
+## The “Creative Accounting” Zone
+
+Now comes the part that sounds like a conspiracy movie.
+
+* **The Offshore Shuffle:** Setting up the "brain" of the algorithm in a low-tax paradise like the Cayman Islands or Ireland.
+
+* **Complex Loss Harvesting:** Using lightning-fast trades to intentionally realize losses in one area to offset the massive gains in another.
+
+* **The Carried Interest Loophole:** Labeling profits as "investment shares" rather than "income" to get a friendlier tax rate.
+
+* **The Server Ghost:** Claiming the trade didn't "happen" in a high-tax country because the physical server is located in a data center in a different jurisdiction.
+
+---
+
+## Final Thought
+
+Whether they are paying their fair share or hiding it in a digital bunker, one thing is certain:
+In the world of HFT, if you are slow, you are broke.
